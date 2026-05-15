@@ -1,8 +1,10 @@
 import 'dart:async';
-import 'dart:developer';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:adora_assignment/core/services/location_service.dart';
+import 'package:adora_assignment/core/services/location_storage_service.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
 class BackgroundService {
@@ -42,11 +44,69 @@ class BackgroundService {
 
     StreamSubscription? subscription;
 
+    double? lastLat;
+    double? lastLng;
+
+    const double minDistance = 10; // meters
+
+    double toRadians(double degree) {
+      return degree * (pi / 180);
+    }
+
+    double calculateDistance(
+      double lat1,
+      double lng1,
+      double lat2,
+      double lng2,
+    ) {
+      const earthRadius = 6371000;
+
+      final dLat = toRadians(lat2 - lat1);
+      final dLng = toRadians(lng2 - lng1);
+
+      final a =
+          sin(dLat / 2) * sin(dLat / 2) +
+          cos(toRadians(lat1)) *
+              cos(toRadians(lat2)) *
+              sin(dLng / 2) *
+              sin(dLng / 2);
+
+      final c = 2 * atan2(sqrt(a), sqrt(1 - a));
+
+      return earthRadius * c;
+    }
+
     void startTracking() {
       subscription?.cancel();
 
       subscription = locationService.getPositionStream().listen((position) {
-        log("BG → ${position.latitude}, ${position.longitude}");
+        final lat = position.latitude;
+        final lng = position.longitude;
+
+        debugPrint("BG → $lat, $lng");
+
+        // 🔥 DISTANCE FILTER
+        if (lastLat != null && lastLng != null) {
+          final distance = calculateDistance(
+            lastLat!,
+            lastLng!,
+            lat,
+            lng,
+          );
+
+          if (distance < minDistance) {
+            return; // ignore small movement
+          }
+        }
+
+        lastLat = lat;
+        lastLng = lng;
+
+        // 💾 SAVE ONLY SIGNIFICANT MOVEMENT
+        LocationStorageService.saveLocation(
+          lat: lat,
+          lng: lng,
+        );
       });
     }
 
@@ -64,7 +124,7 @@ class BackgroundService {
       service.stopSelf();
     });
 
-    // IMPORTANT: start tracking immediately
+    // 🚀 start immediately
     startTracking();
   }
 }

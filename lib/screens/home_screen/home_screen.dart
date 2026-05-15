@@ -2,6 +2,8 @@ import 'package:adora_assignment/screens/home_screen/home_screen_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../routes/route_name.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -22,6 +24,14 @@ class HomeScreenContent extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Location Tracker"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteName.historyScreen);
+            },
+            icon: const Icon(Icons.history),
+          ),
+        ],
       ),
       body: Center(
         child: Consumer<HomeScreenVM>(
