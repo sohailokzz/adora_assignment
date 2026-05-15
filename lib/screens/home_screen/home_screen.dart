@@ -20,11 +20,66 @@ class HomeScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home Screen")),
-      body: const Column(
-        children: [
-          Text("Home Screen"),
-        ],
+      appBar: AppBar(
+        title: const Text("Location Tracker"),
+      ),
+      body: Center(
+        child: Consumer<HomeScreenVM>(
+          builder: (context, vm, child) {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Current Location",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  if (vm.isLoading)
+                    const CircularProgressIndicator()
+                  else ...[
+                    Text(
+                      "Latitude: ${vm.latitude ?? '--'}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Longitude: ${vm.longitude ?? '--'}",
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+
+                  const SizedBox(height: 30),
+
+                  ElevatedButton(
+                    onPressed: vm.fetchLocation,
+                    child: const Text("Get Current Location"),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  SwitchListTile(
+                    title: const Text("Live Tracking"),
+                    value: vm.isTracking, // optional idea below
+                    onChanged: (value) {
+                      if (value) {
+                        vm.startLiveTracking();
+                      } else {
+                        vm.stopLiveTracking();
+                      }
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
