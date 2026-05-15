@@ -69,8 +69,10 @@ class HomeScreenContent extends StatelessWidget {
                     value: vm.isTracking, // optional idea below
                     onChanged: (value) {
                       if (value) {
+                        vm.startBackgroundTracking();
                         vm.startLiveTracking();
                       } else {
+                        vm.stopBackgroundTracking();
                         vm.stopLiveTracking();
                       }
                     },

@@ -80,10 +80,58 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_background_service",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_background_service-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_background_service_android",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_background_service_android-6.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_background_service_ios",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_background_service_ios-5.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_background_service_platform_interface",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_background_service_platform_interface-5.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "flutter_local_notifications",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_local_notifications-20.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "flutter_local_notifications_linux",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_local_notifications_platform_interface-10.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "flutter_local_notifications_windows",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/flutter_local_notifications_windows-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_test",
@@ -378,6 +426,12 @@
       "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/test_api-0.7.6",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "timezone",
+      "rootUri": "file:///Users/sohail/.pub-cache/hosted/pub.dev/timezone-0.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "typed_data",

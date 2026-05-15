@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:adora_assignment/core/services/background_service.dart';
 import 'package:adora_assignment/core/services/location_service.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +60,16 @@ class HomeScreenVM extends ChangeNotifier {
     log("Live tracking stopped");
     _subscription?.cancel();
     _subscription = null;
+    notifyListeners();
+  }
+
+  Future<void> startBackgroundTracking() async {
+    await BackgroundService.startService();
+    notifyListeners();
+  }
+
+  Future<void> stopBackgroundTracking() async {
+    await BackgroundService.stopService();
     notifyListeners();
   }
 
